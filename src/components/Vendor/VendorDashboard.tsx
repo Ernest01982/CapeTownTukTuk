@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Package, TrendingUp, Users, DollarSign, Upload, Search, Filter } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase, Business, Product } from '../../lib/supabase';
-import { ProductModal } from './ProductModal';
+import ProductModal from './ProductModal';
 import { ProductCard } from './ProductCard';
 import { BulkUploadModal } from './BulkUploadModal';
 import { OrdersTab } from './OrdersTab';
