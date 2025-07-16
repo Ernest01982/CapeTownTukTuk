@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Truck, User, LogOut, Menu, Settings } from 'lucide-react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAppContext } from '../../context/AppContext'; // Import the new hook
 
 export function Header() {
-  const { user, profile, signOut } = useAuth();
+  const { auth, cart } = useAppContext(); // Use the new hook
+  const { user, profile, signOut } = auth; // Destructure auth state
+  const { getTotalItems } = cart; // Destructure cart state
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -13,11 +15,9 @@ export function Header() {
       if (error) {
         console.error('Sign out error:', error);
       }
-      // Navigate to home page after sign out
       navigate('/');
     } catch (error) {
       console.error('Unexpected error during sign out:', error);
-      // Force navigation even if there's an error
       navigate('/');
     }
   };
@@ -55,6 +55,7 @@ export function Header() {
         return 'Dashboard';
     }
   };
+
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
